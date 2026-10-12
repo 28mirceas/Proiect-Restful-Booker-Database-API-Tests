@@ -1,5 +1,5 @@
 # Restful Booker – Python & MySQL Database Testing
-**CI/CD:** Automated database tests run with GitHub Actions on every push and pull request.
+![CI](https://github.com/28mirceas/Proiect-Restful-Booker-Database-API-Tests/actions/workflows/database_tests.yml/badge.svg)
 
 ## Project Overview
 
