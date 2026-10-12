@@ -31,7 +31,7 @@ The project aims to demonstrate:
 RestfulBooker/
 ├── .github/
 │   └── workflows/
-│       └── api_tests.yml
+│       └── database_tests.yml
 ├── db/
 │   ├── __init__.py
 │   ├── mysql_connector.py
