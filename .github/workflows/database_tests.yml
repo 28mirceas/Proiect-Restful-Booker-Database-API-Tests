@@ -66,7 +66,23 @@ jobs:
                       raise
                   time.sleep(2)
           PY
+
           mysql -h 127.0.0.1 -P 3306 -uroot -proot booker < db/schema.sql
+
+      - name: Create test admin user
+        run: |
+          python - <<'PY'
+          from db.booking_db import create_user
+
+          result = create_user("admin", "password123")
+
+          if result["succes"]:
+              print("Test admin user created successfully.")
+          elif result["mesaj"] == "Utilizator existent!":
+              print("Test admin user already exists.")
+          else:
+              raise RuntimeError(f"Could not prepare test user: {result}")
+          PY
 
       - name: Run tests
         run: python -m pytest -v
