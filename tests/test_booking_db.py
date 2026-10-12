@@ -102,7 +102,7 @@ def test_get_booking():
     assert result["booking"]["Date_checkin"] == date(2018, 1, 1)
     assert result["booking"]["Date_checkout"] == date(2019, 1, 1)
     assert result["booking"]["additionalneeds"] == "Breakfast"
-     assert result["booking"]["Id_user"] == user["Id_user"]
+    assert result["booking"]["Id_user"] == user["Id_user"]
 
 
 def test_update_booking():
