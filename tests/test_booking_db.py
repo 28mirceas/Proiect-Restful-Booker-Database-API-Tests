@@ -106,8 +106,11 @@ def test_get_booking():
 
 
 def test_update_booking():
-    result = update_booking("admin", "password123", 1, "Paul", "Allan", 113, False,
-                            "2018-01-05", "2019-01-06", "Dinner")
+    result = update_booking(
+        "admin", "password123", 1,
+        "Paul", "Allan", 113, False,
+        "2018-01-05", "2019-01-06", "Dinner"
+    )
     assert result["succes"] is True
     assert result["booking"]["Id_booking"] == 1
     assert result["booking"]["firstname"] == "Paul"
@@ -117,7 +120,18 @@ def test_update_booking():
     assert result["booking"]["Date_checkin"] == date(2018, 1, 5)
     assert result["booking"]["Date_checkout"] == date(2019, 1, 6)
     assert result["booking"]["additionalneeds"] == "Dinner"
-     assert result["booking"]["Id_user"] == user["Id_user"]
+
+    conexiune = conectare_mysql()
+    cursor = conexiune.cursor(dictionary=True)
+
+    cursor.execute(
+        "SELECT Id_user FROM users WHERE username = %s",
+        ("admin",)
+    )
+    user = cursor.fetchone()
+    assert result["booking"]["Id_user"] == user["Id_user"]
+    cursor.close()
+    conexiune.close()
 
 
 def test_delete_booking():
